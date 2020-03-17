@@ -13,7 +13,7 @@ mrproper: clean
 	@rm -rf $(RESULTS)/*
 
 results: all
-	@sh/results.sh
+	@sh/results.sh $(TRIALS)
 
 $(BIN)/null: null.c
 	@mkdir -p $(BIN)
