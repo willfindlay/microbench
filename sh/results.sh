@@ -8,6 +8,9 @@ RESULTS="results/${DATE}"
 ROOT="$(readlink -f .)"
 BIN="${ROOT}/bin"
 
+# /dev/null
+DEVNULL="/dev/null"
+
 # Number of trials
 TRIALS="$1:-1000"
 
@@ -18,5 +21,5 @@ mkdir -p "${RESULTS}"
 
 for file in ${BIN}/*; do
     [ -e ${file} ] || continue
-    ${file} ${TRIALS}
+    ${file} ${TRIALS} > ${DEVNULL} 2> ${RESULTS}/${file##*/}.log
 done;

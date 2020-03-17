@@ -1,3 +1,4 @@
+SRC = src
 BIN = bin
 RESULTS = results
 TRIALS = 1000
@@ -15,15 +16,15 @@ mrproper: clean
 results: all
 	@sh/results.sh $(TRIALS)
 
-$(BIN)/null: null.c
+$(BIN)/null: $(SRC)/null.c
 	@mkdir -p $(BIN)
-	gcc -O2 -o $(BIN)/null null.c
+	gcc -O2 -o $(BIN)/null $(SRC)/null.c
 
-$(BIN)/simple: simple.c
+$(BIN)/simple: $(SRC)/simple.c
 	@mkdir -p $(BIN)
-	gcc -O2 -o $(BIN)/simple simple.c
+	gcc -O2 -o $(BIN)/simple $(SRC)/simple.c
 
-$(BIN)/system: system.c
+$(BIN)/system: $(SRC)/system.c
 	@mkdir -p $(BIN)
-	gcc -O2 -o $(BIN)/system system.c
+	gcc -O2 -o $(BIN)/system $(SRC)/system.c
 
