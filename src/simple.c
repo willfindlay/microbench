@@ -8,7 +8,7 @@
 #define SEC_USEC 1000000
 
 extern char **environ;
-char *lsargs[] = {"/usr/bin/ls"};
+char *lsargs[] = {"/bin/ls"};
 
 void create_children(int count)
 {
