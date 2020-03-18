@@ -12,19 +12,9 @@ char *ls = "/bin/ls";
 
 void create_children(int count)
 {
-    int pid;
     for (int i = 0; i < count; i++)
     {
-        pid = fork();
-        if (!pid)
-        {
-            system(ls);
-            exit(0);
-        }
-        else
-        {
-            wait(NULL);
-        }
+        system(ls);
     }
 }
 
