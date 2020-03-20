@@ -5,7 +5,7 @@ TRIALS = 1000
 
 .PHONY: all clean mrproper results
 
-all: $(BIN)/null $(BIN)/simple $(BIN)/system
+all: $(BIN)/fork $(BIN)/forkexec $(BIN)/system
 
 clean:
 	@rm -rf $(BIN)
@@ -16,13 +16,13 @@ mrproper: clean
 results: all
 	@sh/results.sh $(TRIALS)
 
-$(BIN)/null: $(SRC)/null.c
+$(BIN)/fork: $(SRC)/fork.c
 	@mkdir -p $(BIN)
-	gcc -O2 -o $(BIN)/null $(SRC)/null.c
+	gcc -O2 -o $(BIN)/fork $(SRC)/fork.c
 
-$(BIN)/simple: $(SRC)/simple.c
+$(BIN)/forkexec: $(SRC)/forkexec.c
 	@mkdir -p $(BIN)
-	gcc -O2 -o $(BIN)/simple $(SRC)/simple.c
+	gcc -O2 -o $(BIN)/forkexec $(SRC)/forkexec.c
 
 $(BIN)/system: $(SRC)/system.c
 	@mkdir -p $(BIN)

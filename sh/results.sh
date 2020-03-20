@@ -1,25 +1,30 @@
-#! /usr/bin/env sh
+#! /usr/bin/env bash
 
 # Date
 DATE=$(date '+%Y_%m_%d_%H:%M:%S')
 
 # Directories
-RESULTS="results/${DATE}"
 ROOT="$(readlink -f .)"
-BIN="${ROOT}/bin"
-
-# /dev/null
-DEVNULL="/dev/null"
+RESULTSDIR="$ROOT/results"
+RESULTS="$RESULTSDIR/$DATE"
+BIN="$ROOT/bin"
 
 # Number of trials
-TRIALS="$1:-1000"
+TRIALS=${1:-1000}
 
-cd ${ROOT}
+cd $ROOT
 
-echo "Creating ${RESULTS}..."
-mkdir -p "${RESULTS}"
+mkdir -p "$RESULTSDIR"
 
-for file in ${BIN}/*; do
-    [ -e ${file} ] || continue
-    ${file} ${TRIALS} > ${DEVNULL} 2> ${RESULTS}/${file##*/}.log
-done;
+results()
+{
+    date
+    sleep 1
+    for (( i=0; i<$TRIALS; i++ )); do
+        $BIN/fork > /dev/null
+        $BIN/forkexec > /dev/null
+        $BIN/system > /dev/null
+    done
+}
+
+results 2>&1 | tee $RESULTS
